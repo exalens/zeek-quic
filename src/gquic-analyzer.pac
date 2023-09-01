@@ -20,7 +20,7 @@ refine connection GQUIC_Conn += {
 
 		void confirm()
 			{
-			zeek_analyzer()->ProtocolConfirmation();
+			zeek_analyzer()->AnalyzerConfirmation();
 
 			if ( zeek::BifConst::GQUIC::skip_after_confirm )
 				zeek_analyzer()->SetSkip(true);
@@ -30,7 +30,7 @@ refine connection GQUIC_Conn += {
 			{
 			if ( version_bytes[0] != 'Q' )
 				{
-				zeek_analyzer()->ProtocolViolation("invalid GQUIC Version",
+				zeek_analyzer()->AnalyzerViolation("invalid GQUIC Version",
 				    reinterpret_cast<const char*>(version_bytes), 4);
 				return 0;
 				}
@@ -39,7 +39,7 @@ refine connection GQUIC_Conn += {
 				{
 				if ( ! isdigit(version_bytes[i]) )
 					{
-					zeek_analyzer()->ProtocolViolation(
+					zeek_analyzer()->AnalyzerViolation(
 					    "invalid GQUIC Version",
 				        reinterpret_cast<const char*>(version_bytes), 4);
 					return 0;
@@ -71,7 +71,7 @@ refine connection GQUIC_Conn += {
 
 			if ( vlist.length() % 4 != 0 )
 				{
-				zeek_analyzer()->ProtocolViolation(
+				zeek_analyzer()->AnalyzerViolation(
 				    "invalid GQUIC Version Negotation list",
 				    reinterpret_cast<const char*>(vlist.data()),
 				    vlist.length());
