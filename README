@@ -74,3 +74,9 @@ Acknowledgements
 ----------------
 
 Prior QUIC analyzer work by Mike Dopheide: https://github.com/dopheide-esnet/bro-quic
+
+Changelog
+----------------
+1st September 2023: Added support for Zeek >4.0.1
+                    Change cmake version to 3.15
+                    Change ProtocolViolation to AnalyzerViolation, ProtocolConfirmation to AnalyzerConfirmation
